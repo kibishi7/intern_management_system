@@ -1,0 +1,19 @@
+# Example curl commands to test the FastAPI intern management system
+
+# 1. Create an intern
+curl -X POST "http://127.0.0.1:8000/interns/" -H "Content-Type: application/json" -d "{\"name\": \"John Doe\", \"email\": \"john@example.com\"}"
+
+# 2. Log time in for intern with id 1
+curl -X POST "http://127.0.0.1:8000/interns/1/time_in"
+
+# 3. Log time out for intern with id 1
+curl -X POST "http://127.0.0.1:8000/interns/1/time_out"
+
+# 4. Get attendance summary for intern with id 1
+curl -X GET "http://127.0.0.1:8000/interns/1/attendance"
+
+# 5. Assign a task to intern with id 1
+curl -X POST "http://127.0.0.1:8000/tasks/" -H "Content-Type: application/json" -d "{\"title\": \"Complete report\", \"description\": \"Finish the monthly report\", \"intern_id\": 1}"
+
+# 6. Mark task with id 1 as completed
+curl -X POST "http://127.0.0.1:8000/tasks/1/complete"

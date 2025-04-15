@@ -1,0 +1,28 @@
+# SQLite shell commands to inspect the intern_management.db database
+
+# Open the SQLite shell and open the database file:
+sqlite3 intern_management.db
+
+# List all tables:
+.tables
+
+# Show schema of interns table:
+.schema interns
+
+# Show schema of attendances table:
+.schema attendances
+
+# Show schema of tasks table:
+.schema tasks
+
+# Query all interns:
+SELECT * FROM interns;
+
+# Query all attendances:
+SELECT * FROM attendances;
+
+# Query all tasks:
+SELECT * FROM tasks;
+
+# Exit the SQLite shell:
+.exit

@@ -1,0 +1,23 @@
+# PowerShell commands to test the FastAPI intern management system
+
+# 1. Create an intern
+$headers = @{ "Content-Type" = "application/json" }
+$body = '{ "name": "John Doe", "email": "john@example.com" }'
+Invoke-RestMethod -Uri "http://127.0.0.1:8000/interns/" -Method POST -Headers $headers -Body $body
+
+# 2. Log time in for intern with id 1
+Invoke-RestMethod -Uri "http://127.0.0.1:8000/interns/1/time_in" -Method POST
+
+# 3. Log time out for intern with id 1
+Invoke-RestMethod -Uri "http://127.0.0.1:8000/interns/1/time_out" -Method POST
+
+# 4. Get attendance summary for intern with id 1
+Invoke-RestMethod -Uri "http://127.0.0.1:8000/interns/1/attendance" -Method GET
+
+# 5. Assign a task to intern with id 1
+$headers = @{ "Content-Type" = "application/json" }
+$body = '{ "title": "Complete report", "description": "Finish the monthly report", "intern_id": 1 }'
+Invoke-RestMethod -Uri "http://127.0.0.1:8000/tasks/" -Method POST -Headers $headers -Body $body
+
+# 6. Mark task with id 1 as completed
+Invoke-RestMethod -Uri "http://127.0.0.1:8000/tasks/1/complete" -Method POST
