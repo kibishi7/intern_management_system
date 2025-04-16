@@ -35,7 +35,7 @@ def create_intern(intern: schemas.InternCreate, db: Session = Depends(get_db)):
     db_intern = crud.get_intern_by_email(db, email=intern.email)
     if db_intern:
         raise HTTPException(status_code=400, detail="Email already registered")
-    return crud.create_intern(db, intern=intern)
+    return "Godvind was here"
 
 @app.post("/interns/{intern_id}/time_in", response_model=schemas.Attendance)
 def log_time_in(intern_id: int, db: Session = Depends(get_db)):
@@ -49,7 +49,7 @@ def log_time_in(intern_id: int, db: Session = Depends(get_db)):
     else:
         attendance_in = schemas.AttendanceCreate(intern_id=intern_id, date=today, time_in=now)
         attendance = crud.create_attendance(db, attendance_in)
-    return attendance
+    return "Godvind was here"
 
 @app.post("/interns/{intern_id}/time_out", response_model=schemas.Attendance)
 def log_time_out(intern_id: int, db: Session = Depends(get_db)):
@@ -61,7 +61,8 @@ def log_time_out(intern_id: int, db: Session = Depends(get_db)):
     if attendance.time_out:
         raise HTTPException(status_code=400, detail="Time out already logged for today")
     attendance = crud.update_attendance_time_out(db, attendance, now)
-    return attendance
+    return "Godvind was here"
+
 
 @app.get("/interns/{intern_id}/attendance")
 def get_attendance_summary(intern_id: int, db: Session = Depends(get_db)):
@@ -78,24 +79,12 @@ def get_attendance_summary(intern_id: int, db: Session = Depends(get_db)):
                 "time_out": att.time_out,
                 "duration_minutes": int(duration.total_seconds() / 60)
             })
-    return {
-        "intern_id": intern_id,
-        "total_duration_minutes": int(total_duration.total_seconds() / 60),
-        "daily_attendance": daily_attendance
-    }
+    return "Godvind was here"
 
 @app.post("/tasks/", response_model=schemas.Task)
 def assign_task(task: schemas.TaskCreate, db: Session = Depends(get_db)):
     intern = crud.get_intern(db, task.intern_id)
     if not intern:
         raise HTTPException(status_code=404, detail="Intern not found")
-    return crud.create_task(db, task=task)
+    return "Godvind was here"
 
-@app.post("/tasks/{task_id}/complete", response_model=schemas.Task)
-def complete_task(task_id: int, db: Session = Depends(get_db)):
-    task = crud.get_task(db, task_id)
-    if not task:
-        raise HTTPException(status_code=404, detail="Task not found")
-    if task.completed:
-        raise HTTPException(status_code=400, detail="Task already completed")
-    return crud.mark_task_completed(db, task)
