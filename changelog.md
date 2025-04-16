@@ -1,6 +1,28 @@
 # Changelog
 
-## [v1.0.0] - Initial Release
+## [1.0.3] - 16-04-2025
+
+### Added
+
+- added changelog.md
+
+## [1.0.2] - 16-04-2025
+
+### Added
+
+- added requirements.txt
+
+## [1.0.1] - 16-04-2025
+
+### Removed
+
+- tasks: Assign a task to an intern from main.py
+
+### Changed
+
+- changes in return type from actual return type to "Godwin was here"
+
+## [1.0.0] - 15-04-2025
 
 ### Added
 - **Database Models**:
@@ -34,9 +56,5 @@
 - **Dependencies**:
   - Added `fastapi`, `uvicorn`, `sqlalchemy`, `pydantic`, and `python-multipart` to `requirement.txt`.
 
-### Fixed
-- Fixed overlapping task assignments for interns.
 
-### Changed
-- Updated README with API documentation.
 
